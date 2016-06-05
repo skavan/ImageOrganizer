@@ -1,0 +1,40 @@
+﻿
+  '      Using ctx = New ScanContext()
+		'	Dim stud As New Directory() With {.Path  = "G:\test path", .NumFiles=0}
+  '          ctx.Directories.Add(stud)
+  '          Dim f As New File() With {.Path = "My File Path", .Filename = "TEST FILE "}
+  '          stud.Files.Add(f)
+		'	ctx.SaveChanges()
+  '          ' Display all Departments from the database ordered by name
+  '          Dim dirs = 
+  '              From d In ctx.Directories
+  '              Order By d.Path
+  '              Select d
+
+  '          For Each directory In dirs 
+  '              Debug.Print(directory.Path)
+  '          Next
+            
+  '          'GridControl1.DataSource = (From r in ctx.Directories Order by r.Path).ToList
+            
+  '          'Dim orderQuery As ObjectQuery(Of Directory) = ctx.Directories.SqlQuery("SELECT * FROM DIRECTORIES")
+
+		'End Using
+
+
+		
+' Process all files in the directory passed in, recurse on any directories  
+' that are found, and process the files they contain. 
+    Public Sub ScanDir(targetDirectory As String, ByRef directoryList As List(Of String), Byref fileList As List(Of String))
+        ' Process the list of files found in the directory. 
+        Dim fileEntries As String() = IO.Directory.GetFiles(targetDirectory)
+        directoryList.Add(targetDirectory)
+        fileList.AddRange(fileEntries)
+
+        ' Recurse into subdirectories of this directory. 
+        Dim subdirectoryEntries As String() = IO.Directory.GetDirectories(targetDirectory)
+        For Each subdirectory As String In subdirectoryEntries
+
+            ScanDir(subdirectory, directoryList, fileList)
+        Next
+    End Sub
