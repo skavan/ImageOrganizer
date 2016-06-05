@@ -2,6 +2,8 @@
 Imports System.Collections.ObjectModel
 Imports System.Data.Entity
 Imports System.IO
+Imports Microsoft.WindowsAPICodePack.Shell
+Imports Microsoft.WindowsAPICodePack.Shell.PropertySystem
 
 Module UtilityMethods
 
@@ -69,6 +71,7 @@ Module UtilityMethods
                 newdir.Files.Add(newfi)
                 newfi.Extension = fi.Extension
                 newfi.Filename = fi.Name
+                newfi = ProcessFile(fi, newfi)
             End If
         Next
         
@@ -79,10 +82,31 @@ Module UtilityMethods
     End Sub
 
     ' Insert logic for processing found files here. 
-    Public Sub ProcessFile(path As String)
-        Console.WriteLine("Processed file '{0}'.", path)
-    End Sub
+    Public Function ProcessFile(fi As FileInfo, newfi As File) As File
+        Dim pic As ShellObject = ShellObject.FromParsingName(fi.FullName)
+        newfi.CameraMake = GetValue(pic.Properties.GetProperty(SystemProperties.System.Photo.CameraManufacturer))
+        newfi.CameraModel = GetValue(pic.Properties.GetProperty(SystemProperties.System.Photo.CameraModel))
+        Dim datetaken = GetValue(pic.Properties.GetProperty(SystemProperties.System.Photo.DateTaken))
+        If datetaken<>"" Then
+            'Debug.Print("a date is found!")
+            newfi.ShootDate = dateTaken
+        Else
+            Dim d1 = fi.CreationTime
+            Dim d2 = fi.LastWriteTime
+            If newfi.CameraMake<>"" Then
+                newfi.ShootDate = d2
+            End If
+        End If
+        Console.WriteLine("Processed file '{0}'.", fi.Name)
+        Return newfi
+    End Function
 
+    Private Function GetValue(value As IShellProperty) As String
+		If value Is Nothing OrElse value.ValueAsObject Is Nothing Then
+			Return ""
+		End If
+		Return value.ValueAsObject.ToString()
+	End Function
     
 
 End Module

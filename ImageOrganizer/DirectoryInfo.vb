@@ -45,7 +45,8 @@ Public Class File
     Public Property Extension As String
     Public Property FileSize As Integer
     Public Property FileType As eFileType
-    Public Property Camera As String
+    Public Property CameraMake As String
+    Public Property CameraModel As String
     <Display(Name := "Shoot Date")> _
     Public Property ShootDate() As System.Nullable(Of DateTime)
     
