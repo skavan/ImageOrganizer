@@ -26,6 +26,7 @@ Partial Class frmMain
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
         Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.SimpleButton5 = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton4 = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton3 = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
@@ -46,7 +47,6 @@ Partial Class frmMain
         Me.TabNavigationPage2 = New DevExpress.XtraBars.Navigation.TabNavigationPage()
         Me.GridControl2 = New DevExpress.XtraGrid.GridControl()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.SimpleButton5 = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1,System.ComponentModel.ISupportInitialize).BeginInit
         Me.PanelControl1.SuspendLayout
         CType(Me.ButtonEdit1.Properties,System.ComponentModel.ISupportInitialize).BeginInit
@@ -74,6 +74,14 @@ Partial Class frmMain
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(1365, 125)
         Me.PanelControl1.TabIndex = 0
+        '
+        'SimpleButton5
+        '
+        Me.SimpleButton5.Location = New System.Drawing.Point(1182, 40)
+        Me.SimpleButton5.Name = "SimpleButton5"
+        Me.SimpleButton5.Size = New System.Drawing.Size(131, 37)
+        Me.SimpleButton5.TabIndex = 6
+        Me.SimpleButton5.Text = "Delete Test"
         '
         'SimpleButton4
         '
@@ -225,6 +233,7 @@ Partial Class frmMain
         '
         Me.GridView1.GridControl = Me.GridControl1
         Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.ShowAlways
         '
         'TabNavigationPage2
         '
@@ -248,14 +257,6 @@ Partial Class frmMain
         '
         Me.GridView2.GridControl = Me.GridControl2
         Me.GridView2.Name = "GridView2"
-        '
-        'SimpleButton5
-        '
-        Me.SimpleButton5.Location = New System.Drawing.Point(1182, 40)
-        Me.SimpleButton5.Name = "SimpleButton5"
-        Me.SimpleButton5.Size = New System.Drawing.Size(131, 37)
-        Me.SimpleButton5.TabIndex = 6
-        Me.SimpleButton5.Text = "Delete Test"
         '
         'frmMain
         '
